@@ -17,10 +17,10 @@ public class Main {
         Transaction.TransactionItem transactionItem = transaction.new TransactionItem("A", 22); // Первая транзакция
         Receipt.printTransactionInfo(transactionItem);
 
-        transactionItem = transaction.new TransactionItem("B", 32);
+        transactionItem = transaction.new TransactionItem("K", 32); // Вторая транзакция
         Receipt.printTransactionInfo(transactionItem);
 
-        transactionItem = transaction.new TransactionItem("K", 46);
+        transactionItem = transaction.new TransactionItem(null, 46); // Третяя транзакция
         Receipt.printTransactionInfo(transactionItem);
     }
 

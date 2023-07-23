@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Transaction {
     private double price;
     private double tax = 1.2;
@@ -10,16 +12,15 @@ public class Transaction {
         }
 
         public TransactionItem(String name, double price){
-            if(name.isEmpty()){  // доработать: если параметр неопределен п.3 абз.4
+            if(name != null && name.isBlank()){  //TODO: проблема решина: если параметр неопределен п.3 абз.4
                 this.name = "Default";
-            } else {
-                this.name = name;
-            }
-            if(price < 0){
+            } else this.name = Objects.requireNonNullElse(name, "Default");
+
+            if(price <= 0){
                 this.price = 0;
             } else {
                 this.price = price;
-                setPrice(getPrice() + this.price); // не уверен в правильности, ведь в условии сетер не предусмотрен
+                setPrice(getPrice() + this.price);
             }
         }
         void printInfo(){
@@ -43,6 +44,7 @@ public class Transaction {
     private void printCheck(double price){
         if (price == 0) {
             System.out.println(String.format("Order price: %.2f \nTotal price: %.2f" , getPrice(), dealPrice()));
+
         } else {
             System.out.println(String.format("price: %.2f", price));
         }
